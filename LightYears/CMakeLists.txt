@@ -24,4 +24,4 @@ add_custom_command(TARGET ${TARGET_NAME}
     )
 endfunction()
 
-CopyLibToTarget(sfml-graphics ${LIGHT_YEARS_GAME_TARGET_NAME})
+# CopyLibToTarget(sfml-graphics ${LIGHT_YEARS_GAME_TARGET_NAME}) # Needed in windows
