@@ -30,7 +30,8 @@ void Application::run()
             }   
         }
 
-        accumulatedTime += mTickClock.restart().asSeconds();
+        float frameDeltaTime = mTickClock.restart().asSeconds();
+        accumulatedTime += frameDeltaTime;
 
         while (accumulatedTime > targetDeltaTime)
         {
@@ -38,6 +39,7 @@ void Application::run()
             tickInternal(targetDeltaTime);
             renderInternal();
         }
+        std::cout << "ticking at frame rate : " << 1.f / frameDeltaTime << std::endl;
     }
 }
 
@@ -86,4 +88,4 @@ void Application::tick(float deltaT)
 
 //////////////////////////////////////////////////////////////////////
 
-}
+} // namespace ly
