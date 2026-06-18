@@ -1,6 +1,6 @@
 #pragma once
 
-#include <framework/Application.h>
+#include <framework/Application.h> // Angulare brackets because LightYearsEngine acts as external library
 
 namespace ly
 {
