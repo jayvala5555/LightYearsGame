@@ -10,7 +10,7 @@ class GameApplication : public Application
 private:
     
 public:
-    // GameApplication();
+    GameApplication();
     // ~GameApplication();
 };
     

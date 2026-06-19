@@ -4,21 +4,52 @@ namespace ly
 {
 
 World::World(Application *owningApp)
-    : mOwningApp{owningApp}
+    : mOwningApp{owningApp},
+    mBeginPlay{false}
 {
     
 }
 
-void World::tickInternal(float deltaTime)
+//////////////////////////////////////////////////////////////////////
+
+void World::tickInternal(float deltaT)
 {
-    
+    tick(deltaT);
 }
+
+//////////////////////////////////////////////////////////////////////
 
 void World::beginPlayInternal()
 {
+    if (!mBeginPlay)
+    {
+        mBeginPlay = true;
+        beginPlay();
+    }    
+}
+
+//////////////////////////////////////////////////////////////////////
+
+void World::beginPlay()
+{
+    LOG("Began the play");
+}
+
+//////////////////////////////////////////////////////////////////////
+
+void World::tick(float deltaT)
+{
+    LOG("ticking at frame rate : %f", 1.f / deltaT);
+}
+
+//////////////////////////////////////////////////////////////////////
+
+World::~World()
+{
 
 }
 
+//////////////////////////////////////////////////////////////////////
 
 } // namespace ly
 

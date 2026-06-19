@@ -1,4 +1,5 @@
 #include "framework/Application.h"
+#include "framework/World.h"
 
 namespace ly
 {
@@ -6,7 +7,8 @@ namespace ly
 Application::Application()
     : mWindow{sf::VideoMode(1024,1440), "Light Years"},
       mTargetFrameRate{60.f},
-      mTickClock{}
+      mTickClock{},
+      mCurrentWorld{nullptr}
 {
     // mWindow.create(sf::VideoMode(1024,1440), "Light Years");
 }
@@ -38,10 +40,7 @@ void Application::run()
             tickInternal(targetDeltaTime);
             renderInternal();
         }
-        // std::cout << "ticking at frame rate : " << 1.f / frameDeltaTime << std::endl;
-        // printf("ticking at frame rate : %f \n", 1.f / frameDeltaTime);
-        // printf("ticking at frame rate : %f" "\n", 1.f / frameDeltaTime);
-        LOG("ticking at frame rate : %f", 1.f / frameDeltaTime);
+        // LOG("ticking at frame rate : %f", 1.f / frameDeltaTime);
     }
 }
 
@@ -50,6 +49,11 @@ void Application::run()
 void Application::tickInternal(float deltaTime)
 {
     tick(deltaTime);
+    if (mCurrentWorld)
+    {
+        mCurrentWorld->beginPlayInternal();
+        mCurrentWorld->tickInternal(deltaTime);
+    }
     // std::cout << "ticking at frame rate : " << 1.f/deltaTime << std::endl;
 }
 

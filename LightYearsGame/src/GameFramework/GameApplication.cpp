@@ -1,4 +1,5 @@
 #include "GameFramework/GameApplication.h"
+#include "framework/World.h"
 
 ly::Application* getApplication()
 {
@@ -8,5 +9,11 @@ ly::Application* getApplication()
 
 namespace ly
 {
-    
+
+GameApplication::GameApplication()
+{
+    loadWorld<World>();
+}
+
 } // namespace ly
+
