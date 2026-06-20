@@ -16,6 +16,9 @@ public:
     // tick for child class.
     virtual void tick(float deltaT);
 
+    // destructor for child class.
+    virtual ~Actor();
+
 private:
     // owner world of actor.
     World* mOwningWorld;

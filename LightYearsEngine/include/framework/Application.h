@@ -15,11 +15,11 @@ public:
 
     // run application.
     void run();
-
+    // load new world of any custom type in this application.
     template<typename worldType>
     lyWP<worldType> loadWorld();
 
-protected:
+private: // can be protected. may be required to change
     // render screen function for child class.
     virtual void render();
     // tick function for child class.

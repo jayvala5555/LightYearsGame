@@ -6,9 +6,9 @@ namespace ly
 
 Application::Application()
     : mWindow{sf::VideoMode(1024,1440), "Light Years"},
-      mTargetFrameRate{60.f},
-      mTickClock{},
-      mCurrentWorld{nullptr}
+    mTargetFrameRate{60.f},
+    mTickClock{},
+    mCurrentWorld{nullptr}
 {
     // mWindow.create(sf::VideoMode(1024,1440), "Light Years");
 }

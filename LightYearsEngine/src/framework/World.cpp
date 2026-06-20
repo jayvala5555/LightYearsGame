@@ -1,11 +1,14 @@
 #include "framework/World.h"
+#include "framework/Actor.h"
 
 namespace ly
 {
 
 World::World(Application *owningApp)
     : mOwningApp{owningApp},
-    mBeginPlay{false}
+    mBeginPlay{false},
+    mActors{},
+    mPendingActors{}
 {
     
 }
@@ -14,6 +17,18 @@ World::World(Application *owningApp)
 
 void World::tickInternal(float deltaT)
 {
+    for(lySP<Actor> actor : mPendingActors)
+    {
+        mActors.push_back(actor);
+        actor->beginPlayInternal();
+    }
+    mPendingActors.clear();
+    
+    for(lySP<Actor> actor : mActors)
+    {
+        actor->tick(deltaT);
+    }
+
     tick(deltaT);
 }
 

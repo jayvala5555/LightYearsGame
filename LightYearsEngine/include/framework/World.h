@@ -1,6 +1,7 @@
 #pragma once
 
 #include "framework/Core.h"
+#include "framework/Actor.h"
 
 namespace ly
 {
@@ -18,9 +19,12 @@ public:
     // tick internal.
     void tickInternal(float deltaT);
 
+    // spawn new actor of any custom type in this world.
+    template<typename actorType>
+    lyWP<actorType> spawnActor();
+    
     // destructor for child class.
     virtual ~World();
-
 private:
     // play internal for child class.
     void beginPlay();
@@ -30,11 +34,18 @@ private:
     Application* mOwningApp;
     // toggle play.
     bool mBeginPlay;
-    // list of actor world is containing.
+    // list of actors owned by world.
     lyList<lySP<Actor>> mActors;
     // list of actors pending to be updated.
     lyList<lySP<Actor>> mPendingActors;
 };
 
+template<typename actorType>
+lyWP<actorType> World::spawnActor()
+{
+    lySP<actorType> newActor{ new actorType{this} };
+    mPendingActors.push_back(newActor);
+    return newActor;
+}
     
 } // namespace ly

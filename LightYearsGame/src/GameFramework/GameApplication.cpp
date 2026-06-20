@@ -6,13 +6,13 @@ ly::Application* getApplication()
     return new ly::GameApplication{};
 }
 
-
 namespace ly
 {
 
 GameApplication::GameApplication()
 {
-    loadWorld<World>();
+    lyWP<World> newWorld = loadWorld<World>();
+    newWorld.lock()->spawnActor<Actor>();
 }
 
 } // namespace ly
