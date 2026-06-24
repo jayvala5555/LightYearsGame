@@ -4,14 +4,20 @@
 
 namespace ly
 {
-
+class Actor;
 class GameApplication : public Application
 {
-private:
-    
 public:
     GameApplication();
     // ~GameApplication();
+    
+    // test.
+    virtual void tick(float deltaT) override;
+private:
+    // test.
+    float counter;
+    // test.
+    lyWP<Actor> actorToDestroy;
 };
     
 } // namespace ly

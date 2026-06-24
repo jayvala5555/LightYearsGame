@@ -11,7 +11,7 @@ class World;
 class Application
 {
 public:
-    Application();
+    Application(const unsigned int winWidth, const unsigned int winHeight, const std::string& title, sf::Uint32 style);
 
     // run application.
     void run();
@@ -27,7 +27,7 @@ private: // can be protected. may be required to change
 
 private:
     // tick internal.
-    void tickInternal(float deltaTime);
+    void tickInternal(float deltaT);
     // render screen internal.
     void renderInternal();
 

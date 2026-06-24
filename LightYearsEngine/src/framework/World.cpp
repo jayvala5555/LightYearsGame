@@ -1,5 +1,4 @@
 #include "framework/World.h"
-#include "framework/Actor.h"
 
 namespace ly
 {
@@ -23,13 +22,34 @@ void World::tickInternal(float deltaT)
         actor->beginPlayInternal();
     }
     mPendingActors.clear();
-    
-    for(lySP<Actor> actor : mActors)
+
+    // for(lySP<Actor> actor : mActors)
+    // {
+    //     actor->tick(deltaT);
+    // }
+
+    for(auto itr = mActors.begin(); itr != mActors.end(); )
     {
-        actor->tick(deltaT);
+        if (itr->get()->isPendingDestroy())
+        {
+            itr = mActors.erase(itr); // returns iterator of next element after erase
+        }
+        else
+        {
+            itr->get()->tickInternal(deltaT);
+            ++itr;
+        }
     }
 
     tick(deltaT);
+}
+
+//////////////////////////////////////////////////////////////////////
+
+void World::render(sf::RenderWindow& window)
+{
+    for (auto& actor : mActors)
+        actor->render(window);
 }
 
 //////////////////////////////////////////////////////////////////////

@@ -4,8 +4,8 @@
 namespace ly
 {
 
-Application::Application()
-    : mWindow{sf::VideoMode(1024,1440), "Light Years"},
+Application::Application(const unsigned int winWidth, const unsigned int winHeight, const std::string &title, sf::Uint32 style)
+    : mWindow{sf::VideoMode(winWidth, winHeight), title, style},
     mTargetFrameRate{60.f},
     mTickClock{},
     mCurrentWorld{nullptr}
@@ -46,15 +46,15 @@ void Application::run()
 
 //////////////////////////////////////////////////////////////////////
 
-void Application::tickInternal(float deltaTime)
+void Application::tickInternal(float deltaT)
 {
-    tick(deltaTime);
+    tick(deltaT);
     if (mCurrentWorld)
     {
         mCurrentWorld->beginPlayInternal();
-        mCurrentWorld->tickInternal(deltaTime);
+        mCurrentWorld->tickInternal(deltaT);
     }
-    // std::cout << "ticking at frame rate : " << 1.f/deltaTime << std::endl;
+    // std::cout << "ticking at frame rate : " << 1.f/deltaT << std::endl;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -72,6 +72,13 @@ void Application::renderInternal()
 
 void Application::render()
 {
+    if (mCurrentWorld)
+    {
+        mCurrentWorld->render(mWindow);
+    }
+
+    // Test window
+    /*
     sf::RectangleShape rect{ sf::Vector2f{100,200} };
     rect.setFillColor(sf::Color::Green);
     rect.setOrigin(50, 100);
@@ -82,6 +89,7 @@ void Application::render()
     circ.setFillColor(sf::Color::White);
     circ.setPosition(mWindow.getSize().x/4.f, mWindow.getSize().y/4.f);
     mWindow.draw(circ);
+    */
 }
 
 
@@ -89,7 +97,7 @@ void Application::render()
 
 void Application::tick(float deltaT)
 {
-    // std::cout << "ticking at frame rate : " << 1.f/deltaTime << std::endl;
+    // std::cout << "ticking at frame rate : " << 1.f/deltaT << std::endl;
 }
 
 //////////////////////////////////////////////////////////////////////

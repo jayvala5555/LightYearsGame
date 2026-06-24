@@ -1,5 +1,6 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
 #include "framework/Core.h"
 #include "framework/Actor.h"
 
@@ -18,6 +19,8 @@ public:
     void beginPlayInternal();
     // tick internal.
     void tickInternal(float deltaT);
+    // render world and its components.
+    void render(sf::RenderWindow& window);
 
     // spawn new actor of any custom type in this world.
     template<typename actorType>
@@ -25,6 +28,7 @@ public:
     
     // destructor for child class.
     virtual ~World();
+
 private:
     // play internal for child class.
     void beginPlay();
