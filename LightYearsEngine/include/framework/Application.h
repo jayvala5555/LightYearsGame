@@ -11,6 +11,7 @@ class World;
 class Application
 {
 public:
+    // constructor.
     Application(const unsigned int winWidth, const unsigned int winHeight, const std::string& title, sf::Uint32 style);
 
     // run application.
@@ -31,7 +32,6 @@ private:
     // render screen internal.
     void renderInternal();
 
-private:
     // main window disply. (SFML)
     sf::RenderWindow mWindow;
     // main clock. (SFML)
@@ -40,6 +40,10 @@ private:
     float mTargetFrameRate;
     // current world.
     lySP<World> mCurrentWorld;
+    // clean cycle clock.
+    sf::Clock mCleanCycleClk;
+    // time between consecutive clean cycle.
+    float mCleanCycleInterval;
 };
 
 template<typename worldType>

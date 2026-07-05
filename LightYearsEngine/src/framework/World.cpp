@@ -67,14 +67,14 @@ void World::beginPlayInternal()
 
 void World::beginPlay()
 {
-    LOG("Began the play");
+    // LOG("Began the play");
 }
 
 //////////////////////////////////////////////////////////////////////
 
 void World::tick(float deltaT)
 {
-    LOG("ticking at frame rate : %f", 1.f / deltaT);
+    // LOG("ticking at frame rate : %f", 1.f / deltaT);
 }
 
 //////////////////////////////////////////////////////////////////////

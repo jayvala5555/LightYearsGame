@@ -1,5 +1,6 @@
 #include "framework/Application.h"
 #include "framework/World.h"
+#include "framework/AssetManager.h"
 
 namespace ly
 {
@@ -8,7 +9,9 @@ Application::Application(const unsigned int winWidth, const unsigned int winHeig
     : mWindow{sf::VideoMode(winWidth, winHeight), title, style},
     mTargetFrameRate{60.f},
     mTickClock{},
-    mCurrentWorld{nullptr}
+    mCurrentWorld{nullptr},
+    mCleanCycleClk{},
+    mCleanCycleInterval{2.f}
 {
     // mWindow.create(sf::VideoMode(1024,1440), "Light Years");
 }
@@ -55,6 +58,12 @@ void Application::tickInternal(float deltaT)
         mCurrentWorld->tickInternal(deltaT);
     }
     // std::cout << "ticking at frame rate : " << 1.f/deltaT << std::endl;
+
+    if (mCleanCycleClk.getElapsedTime().asSeconds() >= mCleanCycleInterval)
+    {
+        mCleanCycleClk.restart();
+        AssetManager::get().cleanCycle();
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
