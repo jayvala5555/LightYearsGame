@@ -6,10 +6,11 @@ namespace ly
 
 class Spaceship : public Actor
 {
-    
+
 public:
     // constructor.
     Spaceship(World* owningWorld, const std::string& texturePath = "");
+
     // tick for spaceship.
     virtual void tick(float deltaT) override;
     // set velocity of spaceship.

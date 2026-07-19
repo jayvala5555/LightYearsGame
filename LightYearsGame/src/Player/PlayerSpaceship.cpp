@@ -1,5 +1,6 @@
 #include "Player/PlayerSpaceship.h"
 #include <SFML/System.hpp>
+#include <SFML/Graphics.hpp>
 #include <framework/Core.h>
 #include <framework/MathUtility.h>
 
@@ -64,7 +65,7 @@ void PlayerSpaceship::handleInput()
         mMoveInput.x = 0.f;
         mMoveInput.y = 0.f;
     }
-
+    clampInputOnEdge();
     normalizeInput();
 }
 
@@ -90,6 +91,23 @@ void PlayerSpaceship::normalizeInput()
     if (len != 0.f)
         LOG("[Player Spaceship] : Move input now: %f, %f", mMoveInput.x, mMoveInput.y);
 }
+
+//////////////////////////////////////////////////////////////////////
+
+void PlayerSpaceship::clampInputOnEdge()
+{
+    if ((getLocation().x + (getBounds().width / 2) > getWindowSize().x && mMoveInput.x == 1.f)
+        || (getLocation().x - (getBounds().width / 2) < 0 && mMoveInput.x == -1.f))
+    {
+        mMoveInput.x = 0.f;
+    }
+
+    if ((getLocation().y + (getBounds().height / 2) > getWindowSize().y && mMoveInput.y == 1.f)
+        || (getLocation().y - (getBounds().height / 2) < 0 && mMoveInput.y == -1.f))
+    {
+        mMoveInput.y = 0.f;
+    }
+} 
 
 //////////////////////////////////////////////////////////////////////
 

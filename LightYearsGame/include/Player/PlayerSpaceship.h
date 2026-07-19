@@ -28,6 +28,8 @@ private:
     void consumeInput(float deltaT);
     // normalize the input.
     void normalizeInput();
+    // limit location in window boundry.
+    void clampInputOnEdge();
     
     // move input.
     sf::Vector2f mMoveInput;

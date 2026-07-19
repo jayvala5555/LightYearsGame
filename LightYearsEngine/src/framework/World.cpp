@@ -1,4 +1,5 @@
 #include "framework/World.h"
+#include "framework/Application.h"
 
 namespace ly
 {
@@ -50,6 +51,13 @@ void World::render(sf::RenderWindow& window)
 {
     for (auto& actor : mActors)
         actor->render(window);
+}
+
+//////////////////////////////////////////////////////////////////////
+
+sf::Vector2u World::getWindowSize() const
+{
+    return mOwningApp->getWindowSize();
 }
 
 //////////////////////////////////////////////////////////////////////

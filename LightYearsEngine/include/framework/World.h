@@ -13,6 +13,7 @@ class World
 {
     
 public:
+    // constructor.
     World(Application* owningApp);
 
     // start play internal.
@@ -21,6 +22,9 @@ public:
     void tickInternal(float deltaT);
     // render world and its components.
     void render(sf::RenderWindow& window);
+
+    // getter for window size.
+    sf::Vector2u getWindowSize() const;
 
     // spawn new actor of any custom type in this world.
     template<typename actorType>

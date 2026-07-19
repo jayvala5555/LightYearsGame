@@ -2,6 +2,7 @@
 #include "framework/Core.h"
 #include "framework/AssetManager.h"
 #include "framework/MathUtility.h"
+#include "framework/World.h"
 
 namespace ly
 {
@@ -135,6 +136,20 @@ sf::Vector2f Actor::getForwardDirection() const
 sf::Vector2f Actor::getRightDirection() const
 {
     return RotationToVector(getRotation() + 90.f);
+}
+
+//////////////////////////////////////////////////////////////////////
+
+sf::Vector2u Actor::getWindowSize() const
+{
+    return mOwningWorld->getWindowSize();
+}
+
+//////////////////////////////////////////////////////////////////////
+
+sf::FloatRect Actor::getBounds() const
+{
+    return mSprite.getGlobalBounds();
 }
 
 //////////////////////////////////////////////////////////////////////

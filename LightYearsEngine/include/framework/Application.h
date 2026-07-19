@@ -16,6 +16,9 @@ public:
 
     // run application.
     void run();
+    // getter for window size.
+    sf::Vector2u getWindowSize() const;
+    
     // load new world of any custom type in this application.
     template<typename worldType>
     lyWP<worldType> loadWorld();
