@@ -1,8 +1,10 @@
-#include "Player/PlayerSpaceship.h"
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <framework/Core.h>
 #include <framework/MathUtility.h>
+
+#include "Player/PlayerSpaceship.h"
+
 
 namespace ly
 {
@@ -10,18 +12,10 @@ namespace ly
 PlayerSpaceship::PlayerSpaceship(World *owningWorld, const std::string &path)
     : Spaceship{owningWorld, path},
     mMoveInput{},
-    mSpeed{200.f}
+    mSpeed{200.f},
+    mShooter{new BulletShooter{this, 0.3f}}
 {
     
-}
-
-//////////////////////////////////////////////////////////////////////
-
-void PlayerSpaceship::tick(float deltaT)
-{
-    Spaceship::tick(deltaT);
-    handleInput();
-    consumeInput(deltaT);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -36,6 +30,25 @@ void PlayerSpaceship::setSpeed(float speed)
 float PlayerSpaceship::getSpeed() const
 {
     return mSpeed;
+}
+
+//////////////////////////////////////////////////////////////////////
+
+void PlayerSpaceship::tick(float deltaT)
+{
+    Spaceship::tick(deltaT);
+    handleInput();
+    consumeInput(deltaT);
+}
+
+//////////////////////////////////////////////////////////////////////
+
+void PlayerSpaceship::shoot()
+{
+    if (mShooter)
+    {
+        mShooter->shoot();
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -67,6 +80,11 @@ void PlayerSpaceship::handleInput()
     }
     clampInputOnEdge();
     normalizeInput();
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    {
+        shoot();
+    }
 }
 
 //////////////////////////////////////////////////////////////////////

@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Spaceship/Spaceship.h>
+#include "Spaceship/Spaceship.h"
+#include "Weapon/BulletShooter.h"
 
 namespace ly
 {
@@ -12,14 +13,15 @@ public:
     // constructor.
     PlayerSpaceship(World* owningWorld, const std::string& path = "SpaceShooterRedux/PNG/playerShip1_blue.png");
 
-    // tick for player spaceship.
-    virtual void tick(float deltaT) override;
-
     // setter for speed.
     void setSpeed(float speed);
-    
     // getter for speed.
     float getSpeed() const;
+    
+    // tick for player spaceship.
+    virtual void tick(float deltaT) override;
+    // shoot.
+    virtual void shoot() override;
 
 private:
     // handle user buttons input.
@@ -31,6 +33,8 @@ private:
     // limit location in window boundry.
     void clampInputOnEdge();
     
+    // shooter for spaceship.
+    lyUP<BulletShooter> mShooter;
     // move input.
     sf::Vector2f mMoveInput;
     // speed of spaceship.
