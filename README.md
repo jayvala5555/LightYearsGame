@@ -5,7 +5,7 @@ Building a  game from scratch using C++.
 ![C++](https://img.shields.io/badge/C%2B%2B-14-blue)
 ![CMake](https://img.shields.io/badge/CMake-3.28.3-green)
 ![SFML](https://img.shields.io/badge/SFML-2.5.1-yellow)
-![Status](https://img.shields.io/badge/Status-In%20Development-orange)   
+![Status](https://img.shields.io/badge/Status-In%20Development-orange)
 
 ## 🎮 About
 

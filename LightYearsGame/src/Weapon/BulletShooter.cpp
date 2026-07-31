@@ -1,5 +1,7 @@
 #include <framework/Core.h>
+#include <framework/World.h>
 #include "Weapon/BulletShooter.h"
+#include "Weapon/Bullet.h"
 
 namespace ly
 {
@@ -28,7 +30,13 @@ bool BulletShooter::isOnCooldown() const
 void BulletShooter::shootImpl()
 {
     mCooldownClk.restart();
-    LOG("Shooting...");
+
+    // LOG("Shooting...");
+
+    lyWP<Bullet> newBullet = getOwner()->getWorld()->spawnActor<Bullet>(getOwner(), "SpaceShooterRedux/PNG/Lasers/laserBlue01.png");
+
+    newBullet.lock()->setLocation(getOwner()->getLocation() - sf::Vector2f(0.f, getOwner()->getGlobalBounds().height / 2));
+    newBullet.lock()->setRotation(getOwner()->getRotation());
 } 
 
 //////////////////////////////////////////////////////////////////////

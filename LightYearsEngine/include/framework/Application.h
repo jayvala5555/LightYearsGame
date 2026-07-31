@@ -45,7 +45,7 @@ private:
     lySP<World> mCurrentWorld;
     // clean cycle clock.
     sf::Clock mCleanCycleClk;
-    // time between consecutive clean cycle.
+    // time between consecutive clean cycle.(in seconds)
     float mCleanCycleInterval;
 };
 

@@ -43,7 +43,11 @@ public:
     // get window size.
     sf::Vector2u getWindowSize() const;
     // get bound rectangle of vector.
-    sf::FloatRect getBounds() const;
+    sf::FloatRect getGlobalBounds() const;
+    // get world having this actor.
+    World* getWorld() const;
+    // check if actor is out of window;
+    bool isActorOutOfWinBounds() const;
 
     // begin play for child class.
     virtual void beginPlay();
@@ -54,7 +58,7 @@ public:
     virtual ~Actor();
 
 private:
-    // change privot at center of actor.
+    // change pivot at center of actor.
     void centerPivot();
 
     // owner world of actor.

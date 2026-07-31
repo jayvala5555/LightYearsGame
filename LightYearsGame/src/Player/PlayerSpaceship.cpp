@@ -13,9 +13,9 @@ PlayerSpaceship::PlayerSpaceship(World *owningWorld, const std::string &path)
     : Spaceship{owningWorld, path},
     mMoveInput{},
     mSpeed{200.f},
-    mShooter{new BulletShooter{this, 0.3f}}
+    mShooter{new BulletShooter{this, 0.1f}}
 {
-    
+
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -73,11 +73,6 @@ void PlayerSpaceship::handleInput()
         mMoveInput.x = 1.f;
     }
     
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-    {
-        mMoveInput.x = 0.f;
-        mMoveInput.y = 0.f;
-    }
     clampInputOnEdge();
     normalizeInput();
 
@@ -114,14 +109,14 @@ void PlayerSpaceship::normalizeInput()
 
 void PlayerSpaceship::clampInputOnEdge()
 {
-    if ((getLocation().x + (getBounds().width / 2) > getWindowSize().x && mMoveInput.x == 1.f)
-        || (getLocation().x - (getBounds().width / 2) < 0 && mMoveInput.x == -1.f))
+    if ((getLocation().x + (getGlobalBounds().width / 2) > getWindowSize().x && mMoveInput.x == 1.f)
+        || (getLocation().x - (getGlobalBounds().width / 2) < 0 && mMoveInput.x == -1.f))
     {
         mMoveInput.x = 0.f;
     }
 
-    if ((getLocation().y + (getBounds().height / 2) > getWindowSize().y && mMoveInput.y == 1.f)
-        || (getLocation().y - (getBounds().height / 2) < 0 && mMoveInput.y == -1.f))
+    if ((getLocation().y + (getGlobalBounds().height / 2) > getWindowSize().y && mMoveInput.y == 1.f)
+        || (getLocation().y - (getGlobalBounds().height / 2) < 0 && mMoveInput.y == -1.f))
     {
         mMoveInput.y = 0.f;
     }
