@@ -1,6 +1,21 @@
 add_executable(${LIGHT_YEARS_GAME_TARGET_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/include/GameFramework/GameApplication.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/GameFramework/GameApplication.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Spaceship/Spaceship.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Spaceship/Spaceship.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Player/PlayerSpaceship.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Player/PlayerSpaceship.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Weapon/Bullet.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Weapon/Bullet.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Weapon/Shooter.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Weapon/Shooter.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Weapon/BulletShooter.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Weapon/BulletShooter.cpp
     )
 
 target_include_directories(${LIGHT_YEARS_GAME_TARGET_NAME} PUBLIC

@@ -6,6 +6,7 @@ namespace ly
 lyUP<AssetManager> AssetManager::assetManager{nullptr};
 
 AssetManager::AssetManager()
+    : mRootDir {}
 {
 
 }
@@ -33,7 +34,7 @@ lySP<sf::Texture> AssetManager::loadTexture(const std::string &path)
     }
 
     lySP<sf::Texture> newTexture{ new sf::Texture};
-    if (newTexture->loadFromFile(path))
+    if (newTexture->loadFromFile(mRootDir + path))
     {
         mLoadedTextureMap.insert({path, newTexture});
         return newTexture;
@@ -58,6 +59,13 @@ void AssetManager::cleanCycle()
             ++itr;
         }
     }
+}
+
+//////////////////////////////////////////////////////////////////////
+
+void AssetManager::setAssetRootDir(const std::string &dir)
+{
+    mRootDir = dir;
 }
 
 } // namespace ly

@@ -16,6 +16,9 @@ public:
 
     // run application.
     void run();
+    // getter for window size.
+    sf::Vector2u getWindowSize() const;
+    
     // load new world of any custom type in this application.
     template<typename worldType>
     lyWP<worldType> loadWorld();
@@ -42,7 +45,7 @@ private:
     lySP<World> mCurrentWorld;
     // clean cycle clock.
     sf::Clock mCleanCycleClk;
-    // time between consecutive clean cycle.
+    // time between consecutive clean cycle.(in seconds)
     float mCleanCycleInterval;
 };
 

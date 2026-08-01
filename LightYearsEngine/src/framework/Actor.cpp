@@ -2,6 +2,7 @@
 #include "framework/Core.h"
 #include "framework/AssetManager.h"
 #include "framework/MathUtility.h"
+#include "framework/World.h"
 
 namespace ly
 {
@@ -53,7 +54,9 @@ void Actor::tick(float deltaT)
 void Actor::tickInternal(float deltaT)
 {
     if (!isPendingDestroy())
+    {
         tick(deltaT);
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -127,15 +130,64 @@ float Actor::getRotation() const
 
 sf::Vector2f Actor::getForwardDirection() const
 {
-    return RotationToVector(getRotation());
+    // Coordinate System (SFML):
+    //   Origin (0,0)
+    //        +---------> +X
+    //        |
+    //        |
+    //        v
+    //       +Y (Down)
+
+    // reducing by 90 because Y-axis is inverted.
+    return RotationToVector(getRotation() - 90.f);
 }
 
 //////////////////////////////////////////////////////////////////////
 
 sf::Vector2f Actor::getRightDirection() const
 {
-    return RotationToVector(getRotation() + 90.f);
+    return RotationToVector(getRotation());
 }
+
+//////////////////////////////////////////////////////////////////////
+
+sf::Vector2u Actor::getWindowSize() const
+{
+    return mOwningWorld->getWindowSize();
+}
+
+//////////////////////////////////////////////////////////////////////
+
+sf::FloatRect Actor::getGlobalBounds() const
+{
+    return mSprite.getGlobalBounds();
+}
+
+//////////////////////////////////////////////////////////////////////
+
+World* Actor::getWorld() const
+{
+    return mOwningWorld;
+}
+
+//////////////////////////////////////////////////////////////////////
+
+bool Actor::isActorOutOfWinBounds() const
+{
+    if ((getLocation().x - (getGlobalBounds().width / 2) > getWindowSize().x)
+        || (getLocation().x + (getGlobalBounds().width / 2) < 0))
+    {
+        return true;
+    }
+
+    if ((getLocation().y - (getGlobalBounds().height / 2) > getWindowSize().y)
+        || (getLocation().y + (getGlobalBounds().height / 2) < 0))
+    {
+        return true;
+    }
+
+    return false;
+} 
 
 //////////////////////////////////////////////////////////////////////
 

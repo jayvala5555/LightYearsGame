@@ -13,6 +13,7 @@ class World
 {
     
 public:
+    // constructor.
     World(Application* owningApp);
 
     // start play internal.
@@ -22,10 +23,15 @@ public:
     // render world and its components.
     void render(sf::RenderWindow& window);
 
+    // getter for window size.
+    sf::Vector2u getWindowSize() const;
+
     // spawn new actor of any custom type in this world.
-    template<typename actorType>
-    lyWP<actorType> spawnActor();
+    template<typename actorType, typename... Args>
+    lyWP<actorType> spawnActor(Args... args);
     
+    // clear pending objects to destroy.
+    void cleanCycle();
     // destructor for child class.
     virtual ~World();
 
@@ -44,10 +50,10 @@ private:
     lyList<lySP<Actor>> mPendingActors;
 };
 
-template<typename actorType>
-lyWP<actorType> World::spawnActor()
+template<typename actorType, typename... Args>
+lyWP<actorType> World::spawnActor(Args... args)
 {
-    lySP<actorType> newActor{ new actorType{this} };
+    lySP<actorType> newActor{ new actorType(this, args...) };
     mPendingActors.push_back(newActor);
     return newActor;
 }

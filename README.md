@@ -4,7 +4,8 @@ Building a  game from scratch using C++.
 
 ![C++](https://img.shields.io/badge/C%2B%2B-14-blue)
 ![CMake](https://img.shields.io/badge/CMake-3.28.3-green)
-![Status](https://img.shields.io/badge/Status-In%20Development-orange)   
+![SFML](https://img.shields.io/badge/SFML-2.5.1-yellow)
+![Status](https://img.shields.io/badge/Status-In%20Development-orange)
 
 ## 🎮 About
 
@@ -31,9 +32,8 @@ The goal is to design, build, and polish a complete game while gaining a deeper 
 ## 🎯 Project Goals
 
 - Build a game from the ground up
-- Write clean and maintainable C++ code
+- Write clean, standardized and maintainable C++ code
 - Learn game engine concepts
-- Track milestones and technical decisions
 - Create a playable and polished final product
 
 ---
@@ -43,12 +43,12 @@ The goal is to design, build, and polish a complete game while gaining a deeper 
 | Component | Technology |
 |------------|------------|
 | Language | C++ |
-| Build System | TBD |
-| Graphics | TBD |
-| Physics | TBD |
-| Platform | TBD |
+| Build System | CMake |
+| Graphics | SFML |
+| Physics | SFML |
+| Platform | Linux |
 
-> Technologies will be updated as development progresses.
+SFML = Simple and Fast Multimedia Library
 
 <!-- ---
 
@@ -108,7 +108,7 @@ LightYearsGame/
 Progress updates and major milestones will be tracked through:
 
 - Git commits
-- GitHub Issues
+<!-- - GitHub Issues -->
 - Pull Requests
 
 ---
@@ -117,7 +117,7 @@ Progress updates and major milestones will be tracked through:
 
 **Early Development**
 
-The project is currently in its initial stages. Core systems and architecture are being planned and implemented.
+The project is currently in its initial stages. Core systems and architecture are being implemented.
 
 ---
 

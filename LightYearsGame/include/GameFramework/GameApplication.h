@@ -5,6 +5,8 @@
 namespace ly
 {
 class Actor;
+class Spaceship;
+class PlayerSpaceship;
 class GameApplication : public Application
 {
 public:
@@ -18,6 +20,8 @@ private:
     float counter;
     // test.
     lyWP<Actor> actorToDestroy;
+    // test.
+    lyWP<PlayerSpaceship> testPlayerSpaceship;
 };
     
 } // namespace ly

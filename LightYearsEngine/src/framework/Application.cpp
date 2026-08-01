@@ -63,6 +63,12 @@ void Application::tickInternal(float deltaT)
     {
         mCleanCycleClk.restart();
         AssetManager::get().cleanCycle();
+
+        // world clean cycle can be shifted to World class.
+        if (mCurrentWorld)
+        {
+            mCurrentWorld->cleanCycle();
+        }
     }
 }
 
@@ -85,22 +91,7 @@ void Application::render()
     {
         mCurrentWorld->render(mWindow);
     }
-
-    // Test window
-    /*
-    sf::RectangleShape rect{ sf::Vector2f{100,200} };
-    rect.setFillColor(sf::Color::Green);
-    rect.setOrigin(50, 100);
-    rect.setPosition(mWindow.getSize().x/2.f, mWindow.getSize().y/2.f);
-    mWindow.draw(rect);
-
-    sf::CircleShape circ{ 100 };
-    circ.setFillColor(sf::Color::White);
-    circ.setPosition(mWindow.getSize().x/4.f, mWindow.getSize().y/4.f);
-    mWindow.draw(circ);
-    */
 }
-
 
 //////////////////////////////////////////////////////////////////////
 
@@ -110,5 +101,13 @@ void Application::tick(float deltaT)
 }
 
 //////////////////////////////////////////////////////////////////////
+
+sf::Vector2u Application::getWindowSize() const
+{
+    return sf::Vector2u(mWindow.getSize());
+}
+
+//////////////////////////////////////////////////////////////////////
+
 
 } // namespace ly
