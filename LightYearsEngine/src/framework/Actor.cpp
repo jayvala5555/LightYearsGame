@@ -54,7 +54,9 @@ void Actor::tick(float deltaT)
 void Actor::tickInternal(float deltaT)
 {
     if (!isPendingDestroy())
+    {
         tick(deltaT);
+    }
 }
 
 //////////////////////////////////////////////////////////////////////

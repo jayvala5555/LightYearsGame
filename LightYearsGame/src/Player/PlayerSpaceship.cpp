@@ -101,8 +101,8 @@ void PlayerSpaceship::normalizeInput()
     
     normalizeVector(mMoveInput);
     
-    if (len != 0.f)
-        LOG("[Player Spaceship] : Move input now: %f, %f", mMoveInput.x, mMoveInput.y);
+    // if (len != 0.f)
+    //     LOG("[Player Spaceship] : Move input now: %f, %f", mMoveInput.x, mMoveInput.y);
 }
 
 //////////////////////////////////////////////////////////////////////
