@@ -63,6 +63,12 @@ void Application::tickInternal(float deltaT)
     {
         mCleanCycleClk.restart();
         AssetManager::get().cleanCycle();
+
+        // world clean cycle can be shifted to World class.
+        if (mCurrentWorld)
+        {
+            mCurrentWorld->cleanCycle();
+        }
     }
 }
 

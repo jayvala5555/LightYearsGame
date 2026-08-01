@@ -30,6 +30,8 @@ public:
     template<typename actorType, typename... Args>
     lyWP<actorType> spawnActor(Args... args);
     
+    // clear pending objects to destroy.
+    void cleanCycle();
     // destructor for child class.
     virtual ~World();
 

@@ -31,15 +31,8 @@ void World::tickInternal(float deltaT)
 
     for(auto itr = mActors.begin(); itr != mActors.end(); )
     {
-        if (itr->get()->isPendingDestroy())
-        {
-            itr = mActors.erase(itr); // returns iterator of next element after erase
-        }
-        else
-        {
-            itr->get()->tickInternal(deltaT);
-            ++itr;
-        }
+        itr->get()->tickInternal(deltaT);
+        ++itr;
     }
 
     tick(deltaT);
@@ -90,6 +83,23 @@ void World::tick(float deltaT)
 World::~World()
 {
 
+}
+
+//////////////////////////////////////////////////////////////////////
+
+void World::cleanCycle()
+{
+    for(auto itr = mActors.begin(); itr != mActors.end(); )
+    {
+        if (itr->get()->isPendingDestroy())
+        {
+            itr = mActors.erase(itr); // returns iterator of next element after erase
+        }
+        else
+        {
+            ++itr;
+        }
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
